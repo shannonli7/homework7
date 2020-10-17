@@ -1,7 +1,7 @@
 function gettingJSON(){
     //Display the forecast
     // Your code here.
-    let weather_app_url = "https://api.openweathermap.org/data/2.5/weather";
+    let weather_app_url = "http://api.openweathermap.org/data/2.5/weather";
 
     // "country code" -> sys.country
     // "city code" -> id
@@ -9,7 +9,7 @@ function gettingJSON(){
       zip: "zip code",
       appid: "c8f5d2484d67510fbd2a720a57f1e04a"
     }
-    weather_app_url += '/data/2.5/weather?q=London&appid='+ dict.appid;
+    weather_app_url += '?q=London&appid='+ dict.appid;
     //Set default location if one isn't provided
     let location;
     // location = "Ann Arbor";
