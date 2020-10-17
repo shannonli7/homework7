@@ -1,7 +1,7 @@
 function gettingJSON(){
     //Display the forecast
     // Your code here.
-    let weather_app_url = "http://api.openweathermap.org/data/2.5/weather";
+    let weather_app_url = "https://api.openweathermap.org/data/2.5/weather";
 
     // "country code" -> sys.country
     // "city code" -> id
