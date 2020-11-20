@@ -39,7 +39,6 @@ function gettingJSON(){
     let query;
     query = url;
     console.log("Query is :" + query);
-
     //Create and set variables for each of the elements you
     //need to update, location, highs and lows,
     //the image, etc.
@@ -49,15 +48,23 @@ function gettingJSON(){
     let tempImg;
 
     $.getJSON(query,function(json){
+        // document.write(JSON.stringify(json))
+        // document.getElementById("forecast").style.display = 'block';
+        $("#forecast").css("display", "inline-block");
+        console.log(json["name"])
+        console.log(json["main"]["temp"])
+        console.log(json["weather"][0]["icon"])
+
+        loc = json["name"];
+        temp = json["main"]["temp"];
+        tempImg = json["weather"][0]["icon"];
+
+        document.getElementById("loc").innerHTML = loc;
+        document.getElementById("temp").innerHTML = temp;
+        document.getElementById("tempImg").innerHTML = tempImg;
+        document.getElementById("tempImg").alt = tempImg;
         //Use returned json to update the values of the three
         //elements in HTML.
         //I would print the JSON to the console
-        // $("#location").text(location);
-        $("#location").text(location);
-        // $("#location").text(temp);
-        $("#forecast").css("display", "inline-block");
-        // console.log("Location is : " + json.name);
-        console.log(json)
-        // console.log(json.main.temp_min);
     });
 }
