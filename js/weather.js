@@ -9,7 +9,7 @@ function gettingJSON(){
     let location = "Ann Arbor";
     let unit_val = document.getElementById("fahrenheit").value;
     let unit = "units=" + unit_val;
-    let url = weather_app_url + 'q=Ann+Arbor'+ "&" + unit + api_end;
+    let url = weather_app_url + 'q=Ann+Arbor' + "&" + unit + api_end;
     location = document.getElementById("location").value;
     //format of the location
     //London,us
@@ -28,10 +28,10 @@ function gettingJSON(){
           // temp_val = json["main"]["temp"] - 273.15;
           unit_val = document.getElementById("celcius").value;
           unit = "units=" + unit_val;
-          url = weather_app_url + "zip=" + location + ",us" + "&" + unit + api_end;
+          url = weather_app_url + "zip=" + location + "&" + unit + api_end;
         } else{
           format = "Fahrenheit";
-          url = weather_app_url + "zip=" + location + ",us" + "&" + unit + api_end;
+          url = weather_app_url + "zip=" + location + "&" + unit + api_end;
           // temp_val = 1.8 * (json["main"]["temp"] - 273) + 32;
         }
       } else{
@@ -40,10 +40,10 @@ function gettingJSON(){
           // temp_val = json["main"]["temp"] - 273.15;
           unit_val = document.getElementById("celcius").value;
           unit = "units=" + unit_val;
-          url = weather_app_url + "q=" + location + ",us" + "&" + unit + api_end;
+          url = weather_app_url + "q=" + location + "&" + unit + api_end;
         } else{
           format = "Fahrenheit";
-          url = weather_app_url + "q=" + location + ",us" + "&" + unit + api_end;
+          url = weather_app_url + "q=" + location + "&" + unit + api_end;
           // temp_val = 1.8 * (json["main"]["temp"] - 273) + 32;
         }
       }
