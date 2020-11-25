@@ -22,7 +22,6 @@ function gettingJSON(){
     console.log("Format is " + format);
 
     if(location !== ""){
-      // replace all spaces in the location with a + (google this) <- if needed
       if(location[0] >= '0' && location[0] <= '9'){
         if(document.getElementById("celcius").checked == true){
           format = "Celcius";
