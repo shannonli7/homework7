@@ -6,34 +6,57 @@ function gettingJSON(){
     const api_end = '&appid='+ appid;
 
     //Set default location if one isn't provided
-    let location;
-    let url = weather_app_url + 'q=Ann+Arbor'+ api_end;
+    let location = "Ann Arbor";
+    let unit_val = document.getElementById("fahrenheit").value;
+    let unit = "units=" + unit_val;
+    let url = weather_app_url + 'q=Ann+Arbor'+ "&" + unit + api_end;
     location = document.getElementById("location").value;
     //format of the location
     //London,us
     //48104,us
 
+    //set default temperature format if one isn't provided
+    let url_temp;
+    let format;
+    format = "Fahrenheit";
+    console.log("Format is " + format);
+
     if(location !== ""){
       // replace all spaces in the location with a + (google this) <- if needed
       if(location[0] >= '0' && location[0] <= '9'){
-        url = weather_app_url + "zip=" + location + api_end;
+        if(document.getElementById("celcius").checked == true){
+          format = "Celcius";
+          // temp_val = json["main"]["temp"] - 273.15;
+          unit_val = document.getElementById("celcius").value;
+          unit = "units=" + unit_val;
+          url = weather_app_url + "zip=" + location + ",us" + "&" + unit + api_end;
+        } else{
+          format = "Fahrenheit";
+          url = weather_app_url + "zip=" + location + ",us" + "&" + unit + api_end;
+          // temp_val = 1.8 * (json["main"]["temp"] - 273) + 32;
+        }
       } else{
-        url = weather_app_url + "q=" + location + api_end;
+        if(document.getElementById("celcius").checked == true){
+          format = "Celcius";
+          // temp_val = json["main"]["temp"] - 273.15;
+          unit_val = document.getElementById("celcius").value;
+          unit = "units=" + unit_val;
+          url = weather_app_url + "q=" + location + ",us" + "&" + unit + api_end;
+        } else{
+          format = "Fahrenheit";
+          url = weather_app_url + "q=" + location + ",us" + "&" + unit + api_end;
+          // temp_val = 1.8 * (json["main"]["temp"] - 273) + 32;
+        }
       }
-      console.log(url);
     }
+
+    console.log(url);
+    console.log(unit);
 
     console.log("Location is : " + location);
 
-    //set default temperature format if one isn't provided
-    let format;
-    format = "Fahrenheit";
-    if(document.getElementById("celcius").checked = true){
-      format = "Celcius";
-    } else{
-      format = "Fahrenheit";
-    }
     console.log("Format is " + format);
+
 
     //set the query
     let query;
@@ -46,23 +69,31 @@ function gettingJSON(){
     let loc;
     let temp;
     let tempImg;
+    let temp_val;
 
     $.getJSON(query,function(json){
         // document.write(JSON.stringify(json))
         // document.getElementById("forecast").style.display = 'block';
-        $("#forecast").css("display", "inline-block");
         console.log(json["name"])
         console.log(json["main"]["temp"])
         console.log(json["weather"][0]["icon"])
 
+        console.log(json["weather"][0]["description"])
+
         loc = json["name"];
-        temp = json["main"]["temp"];
+
+        temp = json["main"]["temp"] + " with " + json["weather"][0]["description"];
         tempImg = json["weather"][0]["icon"];
 
+        link = "http://openweathermap.org/img/wn/" + tempImg + "@2x.png";
+
+        console.log(link)
         document.getElementById("loc").innerHTML = loc;
         document.getElementById("temp").innerHTML = temp;
-        document.getElementById("tempImg").innerHTML = tempImg;
+        document.getElementById("tempImg").src = link;
         document.getElementById("tempImg").alt = tempImg;
+
+        $("#forecast").css("display", "inline-block");
         //Use returned json to update the values of the three
         //elements in HTML.
         //I would print the JSON to the console
