@@ -90,9 +90,10 @@ function gettingJSON(){
         document.getElementById("loc").innerHTML = loc;
         document.getElementById("temp").innerHTML = temp;
         document.getElementById("tempImg").src = link;
-        document.getElementById("tempImg").alt = tempImg;
+        document.getElementById("tempImg").alt = json["weather"][0]["description"];
 
-        $("#forecast").css("display", "inline-block");
+        console.log(document.getElementById("tempImg").alt)
+        $("#forecast").css("display", "block");
         //Use returned json to update the values of the three
         //elements in HTML.
         //I would print the JSON to the console
