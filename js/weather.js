@@ -9,6 +9,10 @@ function gettingJSON(){
     let location = "Ann Arbor";
     let unit_val = document.getElementById("fahrenheit").value;
     let unit = "units=" + unit_val;
+    if(document.getElementById("celcius").checked == true){
+      unit_val = document.getElementById("celcius").value;
+      unit = "units=" + unit_val;
+    }
     let url = weather_app_url + 'q=Ann+Arbor' + "&" + unit + api_end;
     location = document.getElementById("location").value;
     //format of the location
